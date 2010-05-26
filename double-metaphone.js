@@ -35,7 +35,7 @@
 //
 // ------------------------------------------------------------------
 
-function double_metaphone( string )
+exports.double_metaphone = function double_metaphone( string )
 {
    primary   = "";
    secondary = "";
