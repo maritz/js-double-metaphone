@@ -1005,5 +1005,5 @@ function is_vowel(string, pos)
 
 function Slavo_Germanic(string) 
 {
-    return ereg("W|K|CZ|WITZ", string);     
+    return /W|K|CZ|WITZ/.test(string);     
 }
