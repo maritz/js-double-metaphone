@@ -37,14 +37,15 @@
 
 exports.double_metaphone = function double_metaphone( string )
 {
-   primary   = "";
-   secondary = "";
-   current   =  0;
-    
-    current  = 0;
-    length   = string.length;
-    last     = length - 1;
-    original = string + "     ";
+    'use strict';
+
+    var primary   = "";
+    var secondary = "";
+    var current   =  0;
+
+    var length   = string.length;
+    var last     = length - 1;
+    var original = string + "     ";
 
     original = original.toUpperCase();
 
@@ -962,48 +963,51 @@ exports.double_metaphone = function double_metaphone( string )
       primary: primary,
       secondary: secondary
     };
-    
-  } // end of function MetaPhone
-  
-  
-/*=================================================================*\
-  # Name:   string_at(string, start, length, list)
-  # Purpose:  Helper function for double_metaphone( )
-  # Return:   Bool
-\*=================================================================*/
-  
-function string_at(string, start, length, list) 
-{
-    if ((start <0) || (start >= string.length))
-      return 0;
 
-    for (var i=0, len=list.length; i<len; i++) {
-      if (list[i] == string.substr(start, length))
-        return 1;
+    /*=================================================================*\
+    # Private Helper Functions
+    \*=================================================================*/
+
+    /*=================================================================*\
+    # Name:   string_at(string, start, length, list)
+    # Purpose:  Helper function for double_metaphone( )
+    # Return:   Bool
+    \*=================================================================*/
+  
+    function string_at(string, start, length, list)
+    {
+        if ((start <0) || (start >= string.length))
+          return 0;
+
+        for (var i=0, len=list.length; i<len; i++) {
+          if (list[i] == string.substr(start, length))
+            return 1;
+        }
+        return 0;
     }
-    return 0;
-  }
 
 
-/*=================================================================*\
-  # Name:   is_vowel(string, pos)
-  # Purpose:  Helper function for double_metaphone( )
-  # Return:   Bool
-\*=================================================================*/
+    /*=================================================================*\
+    # Name:   is_vowel(string, pos)
+    # Purpose:  Helper function for double_metaphone( )
+    # Return:   Bool
+    \*=================================================================*/
 
-function is_vowel(string, pos)
-{
-    return /[AEIOUY]/.test(string.substr(pos, 1));
-}
+    function is_vowel(string, pos)
+    {
+        return /[AEIOUY]/.test(string.substr(pos, 1));
+    }
 
 
-/*=================================================================*\
-  # Name:   Slavo_Germanic(string, pos)
-  # Purpose:  Helper function for double_metaphone( )
-  # Return:   Bool
-\*=================================================================*/
+    /*=================================================================*\
+    # Name:   Slavo_Germanic(string, pos)
+    # Purpose:  Helper function for double_metaphone( )
+    # Return:   Bool
+    \*=================================================================*/
 
-function Slavo_Germanic(string) 
-{
-    return /W|K|CZ|WITZ/.test(string);     
-}
+    function Slavo_Germanic(string)
+    {
+        return /W|K|CZ|WITZ/.test(string);
+    }
+
+} // end of function MetaPhone
